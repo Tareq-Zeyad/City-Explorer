@@ -1,8 +1,13 @@
 import axios from 'axios';
 import React from 'react';
-import './App.css';
 import Footer from './components/Footer';
 import Header from './components/Header';
+import Form from 'react-bootstrap/Form'
+import Button from 'react-bootstrap/Button';
+import './App.css';
+import 'bootstrap/dist/css/bootstrap.min.css';
+
+
 
 class App extends React.Component {
 
@@ -51,11 +56,14 @@ class App extends React.Component {
   render() {
     return (
       <>
-        <Header/>
-        <form onSubmit={this.getLocationData}>
-          <input type='text' name='cityName' placeholder='Enter City Name here' />
-          <button type='submit'>Explore</button>
-        </form>
+        <Header className="Header"/>
+        <Form className="Form" onSubmit={this.getLocationData}>
+        <Form.Group className="mb-3" controlId="formBasicEmail">
+        <Form.Label>Enter City</Form.Label>
+        <Form.Control  name='cityName' type="text" placeholder="Enter City Name here" />
+          </Form.Group>
+          <Button type='submit'>Explore</Button>
+        </Form>
 
         {/* Render the city data */}
         <p>DisplayName: {this.state.displayName}</p>
@@ -67,7 +75,6 @@ class App extends React.Component {
         {this.state.displayErr && <p>Sorry some errors may occured</p>}
 
         <Footer />
-
       </>
     )
   }
