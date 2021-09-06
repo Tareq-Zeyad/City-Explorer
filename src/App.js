@@ -29,6 +29,7 @@ class App extends React.Component {
     let cityName = event.target.cityName.value;
     // let keyAPI = 'pk.ecabd378ab96c0605c0417b2d7af1979';
     // let keyAPI = process.env.REACT_KEY;
+    console.log(cityName);
     console.log(process.env.REACT_APP_LOCATION_IQ_KEY);
     let URl = `https://eu1.locationiq.com/v1/search.php?key=${process.env.REACT_APP_LOCATION_IQ_KEY}&q=${cityName}&format=json`;
 
@@ -70,7 +71,7 @@ class App extends React.Component {
         <p>Lat : {this.state.lat}</p>
         <p>Lon : {this.state.lon}</p>
 
-        {this.state.mapFlag && <img src={`https://maps.locationiq.com/v3/staticmap?key=pk.ecabd378ab96c0605c0417b2d7af1979&center=${this.state.lat},${this.state.lon}`} alt='map' />}
+        {this.state.mapFlag && <img src={`https://maps.locationiq.com/v3/staticmap?key=${process.env.REACT_APP_LOCATION_IQ_KEY}&center=${this.state.lat},${this.state.lon}`} alt='map' />}
 
         {this.state.displayErr && <p>Sorry some errors may occured</p>}
 
