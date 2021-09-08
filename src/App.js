@@ -6,7 +6,6 @@ import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button';
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import Weather from './components/Weather';
 
 
 class App extends React.Component {
@@ -31,14 +30,14 @@ class App extends React.Component {
     let cityName = event.target.cityName.value;
     // let keyAPI = process.env.REACT_KEY;
     // console.log(process.env.REACT_APP_LOCATION_IQ_KEY);
-    let URl = `https://eu1.locationiq.com/v1/search.php?key=${process.env.REACT_APP_LOCATION_IQ_KEY}&q=${cityName}&format=json`;
+    let URL = `https://eu1.locationiq.com/v1/search.php?key=${process.env.REACT_APP_LOCATION_IQ_KEY}&q=${cityName}&format=json`;
 
     let weatherURL = await axios.get(`http://localhost:3010/weather?searchQuery=${cityName}`)
     console.log(weatherURL.data);
 
     try {
       // axious : to send a request from the client side (browser) to the API server.
-      let response = await axios.get(URl);
+      let response = await axios.get(URL);
       console.log(response.data);
 
       this.setState({
