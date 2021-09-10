@@ -4,11 +4,8 @@ class Movies extends React.Component {
 
     
     render () {
-        return (
-            <>
-
-            </>
-        )
+        return this.props.movies;
+        
     }
 }
 

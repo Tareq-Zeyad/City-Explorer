@@ -8,6 +8,8 @@ import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Weather from './components/Weather';
 import Movies from './components/Movies';
+import Error from "./components/Error";
+
 
 
 class App extends React.Component {
@@ -22,7 +24,7 @@ class App extends React.Component {
       moviesArr: [],
       mapFlag: false,
       displayErr: false
-    }
+    };
   }
 
 
@@ -32,8 +34,8 @@ class App extends React.Component {
     let cityName = event.target.cityName.value;
 
     let URL1 = `https://eu1.locationiq.com/v1/search.php?key=${process.env.REACT_APP_LOCATION_IQ_KEY}&q=${cityName}&format=json`;
-    let URL2 = `http://localhost:3010/weather?searchQuery=${cityName}`;
-    let URL3 = `http://localhost:3010/movies?searchQuery=${cityName}`;
+    let URL2 = `https://city-server-lab.herokuapp.com/weather?searchQuery=${cityName}`;
+    let URL3 = `https://city-server-lab.herokuapp.com/movies?searchQuery=${cityName}`;
 
     // weather bit API http://api.weatherbit.io/v2.0/forecast/daily?city=${search}&key=${weatherAPI}
     // movies DB API https://api.themoviedb.org/3/search/movie?api_key=${movieAPI}&query=${search}
@@ -90,6 +92,7 @@ class App extends React.Component {
           <p>Lat : {this.state.lat}</p>
           <p>Lon : {this.state.lon}</p>
 
+
           {this.state.mapFlag && <img src={`https://maps.locationiq.com/v3/staticmap?key=${process.env.REACT_APP_LOCATION_IQ_KEY}&center=${this.state.lat},${this.state.lon}`} alt='map' />}
 
           {this.state.displayErr && <p>Sorry some errors may occured</p>}
@@ -100,11 +103,11 @@ class App extends React.Component {
             <Weather
               weather={this.state.weatherArr.map(item => {
                 return (
-                <>
-                
-                  <p> Date: {item.date} </p>
-                  <p> Description: {item.description}</p>
-                </>
+                  <>
+
+                    <p> Date: {item.date} </p>
+                    <p> Description: {item.description}</p>
+                  </>
                 );
               })}
             />
@@ -116,17 +119,20 @@ class App extends React.Component {
             <Movies
               movies={this.state.moviesArr.map(item => {
                 return (
-                <>
-                  <p> Title: {item.title} </p>
-                  <p> Poster: {item.poster_path}</p>
-                  <p> Realesed on: {item.release_date} </p>
-                </>
+                  <>
+                   <p>Title: {item.title}</p>
+                   <p> Image: {item.image_url} </p>
+                    <p>Overview: {item.overview}</p>
+                    <p>Total votes: {item.total_votes}</p>
+                    <p>Popularity: {item.popularity}</p>
+                    <p>Released on: {item.released_on}</p>
+                  </>
                 );
               })}
             />
           )}
         </div>
-
+        <Error err={this.state.displayErr} />
         <Footer />
       </>
     )
