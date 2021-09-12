@@ -32,10 +32,10 @@ class App extends React.Component {
 
     event.preventDefault();
     let cityName = event.target.cityName.value;
-    console.log(1, cityName);
+    // console.log(1, cityName);
     let URL1 = `https://eu1.locationiq.com/v1/search.php?key=${process.env.REACT_APP_LOCATION_IQ_KEY}&q=${cityName}&format=json`;
-    let URL2 = `${process.env.REACT_APP_SERVER_LINK}/weather?searchQuery=${cityName}`;
-    let URL3 = `${process.env.REACT_APP_SERVER_LINK}/movies?searchQuery=${cityName}`;
+    let URL2 = `https://city-explorer-server01.herokuapp.com/weather?searchQuery=${cityName}`;
+    let URL3 = `https://city-explorer-server01.herokuapp.com/movies?searchQuery=${cityName}`;
     
     // console.log(URL1, URL2, URL3);
     // console.log(process.env.REACT_APP_SERVER_LINK);
